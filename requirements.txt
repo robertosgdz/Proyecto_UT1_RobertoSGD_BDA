@@ -1,0 +1,13 @@
+# == Core Data Manipulation ==
+pandas
+
+# == Parquet Storage Engine ==
+# PyArrow es necesario para leer y escribir ficheros Parquet con Pandas
+# y es fundamental para el particionamiento.
+pyarrow
+fastparquet==2024.5.0
+
+# == Markdown Report Generation ==
+# Tabulate se usará para formatear los DataFrames de Pandas
+# en tablas con sintaxis de Markdown para el reporte final.
+tabulate

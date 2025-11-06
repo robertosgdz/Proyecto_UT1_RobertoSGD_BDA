@@ -1,0 +1,20 @@
+{"ts": "2025-01-03T11:10:20Z", "user_id": "u003", "path": null, "referrer": "google", "device": "tablet"}
+{"ts": "2025-01-03T11:20:00", "user_id": "u005", "path": "/", "referrer": "direct", "device": "desktop"}
+{"ts": "2025-01-03T10:56:00Z", "user_id": "u003", "path": "/productos?id=123", "referrer": "direct", "device": "mobile"}
+{"ts": "2025-01-03T10:28:00Z", "user_id": "u005", "path": "/productos", "referrer": "/", "device": "mobile"}
+{"ts": "2025-01-03T10:14:00Z", "user_id": "u004", "path": "/checkout", "referrer": "google", "device": "mobile"}
+{"ts": "2025-01-03T11:05:10Z", "user_id": "", "path": "/productos", "referrer": "/", "device": "desktop"}
+{"ts": "2025-01-03T10:56:00Z", "user_id": "u002", "path": "/productos?id=123", "referrer": "direct", "device": "mobile"}
+{"ts": "2025-01-03T10:44:00Z", "user_id": "u002", "path": "/contacto?utm=google", "referrer": "/", "device": "mobile"}
+{"ts": "2025-01-03T10:12:00Z", "user_id": "u005", "path": "/", "referrer": "google", "device": "desktop"}
+{"ts": "2025-01-03T10:36:00Z", "user_id": "u004", "path": "/productos?id=123", "referrer": "/", "device": "mobile"}
+{"ts": "2025-01-03T10:12:00Z", "user_id": "u005", "path": "/checkout", "referrer": "/productos", "device": "mobile"}
+{"ts": "2025-01-03T10:50:00Z", "user_id": "u001", "path": "/", "referrer": "google", "device": "desktop"}
+{"ts": "2025-01-03T11:15:30Z", "user_id": "u004", "path": "/checkout", "device": "mobile",}
+{"ts": "2025-01-03T10:20:00Z", "user_id": "u002", "path": "/checkout", "referrer": "google", "device": "desktop"}
+{"ts": "2025-01-03T10:46:00Z", "user_id": "u001", "path": "/", "referrer": "/productos", "device": "mobile"}
+{"ts": "2025-01-03T10:38:00Z", "user_id": "u004", "path": "/productos?id=123", "referrer": "/", "device": "mobile"}
+{"ts": "2025-01-03T10:20:00Z", "user_id": "u005", "path": "/productos?id=123", "referrer": "/", "device": "tablet"}
+{"ts": "2025/01/03 11:00:00", "user_id": "u001", "path": "/", "referrer": "direct", "device": "mobile"}
+{"ts": "2025-01-03T10:40:00Z", "user_id": "u004", "path": "/checkout", "referrer": "google", "device": "mobile"}
+{"ts": "2025-01-03T10:20:00Z", "user_id": "u004", "path": "/contacto?utm=google", "referrer": "/", "device": "desktop"}
