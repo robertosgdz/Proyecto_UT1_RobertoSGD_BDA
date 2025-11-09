@@ -2,7 +2,7 @@
 # Informe de Analítica Web
 
 - **Periodo Analizado:** 2025-01-03 a 2025-01-03
-- **Fecha de Generación:** 2025-11-06 11:06:55 UTC
+- **Fecha de Generación:** 2025-11-09 10:54:58 UTC
 - **Fuente de Datos:** Ficheros NDJSON en `project/data/drops/`
 
 ---
@@ -20,24 +20,27 @@
 
 | fecha      |   sesiones_unicas |
 |------------|-------------------|
-| 2025-01-03 |                 5 |
+| 2025-01-03 |              6620 |
 
 ### Top 10 Páginas Más Visitadas
 
 | path       |   visitas |
 |------------|-----------|
-| /productos |         6 |
-| /checkout  |         4 |
-| /          |         3 |
-| /contacto  |         2 |
+| /          |      3865 |
+| /productos |      2472 |
+| /checkout  |      1010 |
+| /contacto  |      1001 |
+| /login     |       531 |
+| /blog      |       505 |
+| /ayuda     |       496 |
 
 ### Embudo de Conversión (Home → Productos → Checkout)
 
 | Paso                  |   Sesiones |   Tasa_Conversion_Paso_Anterior |   Tasa_Conversion_Total |
 |-----------------------|------------|---------------------------------|-------------------------|
-| 1. Visita a Home (/)  |          2 |                          100.00 |                  100.00 |
-| 2. Visita a Productos |          1 |                           50.00 |                   50.00 |
-| 3. Visita a Checkout  |          1 |                          100.00 |                   50.00 |
+| 1. Visita a Home (/)  |       3266 |                          100.00 |                  100.00 |
+| 2. Visita a Productos |        637 |                           19.50 |                   19.50 |
+| 3. Visita a Checkout  |         72 |                           11.30 |                    2.20 |
 
 ---
 

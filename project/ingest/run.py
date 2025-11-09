@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 import hashlib
 from pathlib import Path
-from datetime import datetime, timezone # <--- IMPORT AÑADIDO
+from datetime import datetime, timezone
 import json
 import pyarrow as pa
 import pyarrow.dataset as ds
@@ -13,10 +13,19 @@ import re
 # FASE 0: CONFIGURACIÓN INICIAL
 # ==============================================================================
 
-# Definimos las rutas principales del proyecto de forma absoluta para evitar problemas.
-PROJECT_ROOT = Path(__file__).parent.parent
-DATA_DIR = PROJECT_ROOT / "data"
-OUTPUT_DIR = PROJECT_ROOT / "output"
+def find_project_root(marker=".gitignore"):
+    """Sube niveles hasta encontrar el fichero marcador de la raíz del proyecto."""
+    current_path = Path(__file__).resolve()
+    while current_path != current_path.parent:
+        if (current_path / marker).exists():
+            return current_path
+        current_path = current_path.parent
+    raise FileNotFoundError(f"No se pudo encontrar la raíz del proyecto (marcador: {marker})")
+
+# --- LÓGICA DE RUTAS ROBUSTA ---
+PROJECT_ROOT = find_project_root()
+DATA_DIR = PROJECT_ROOT / "project" / "data"
+OUTPUT_DIR = PROJECT_ROOT / "project" / "output"
 DB_PATH = OUTPUT_DIR / "ut1.db"
 
 # Creación de directorios de salida si no existen.
@@ -28,15 +37,11 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 def setup_database():
     """
     Inicializa la base de datos SQLite.
-    Para este proyecto, borra (DROP) y recrea la tabla de historial en cada ejecución.
+    Para este proyecto, borra la tabla de historial en cada ejecución.
     """
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    
-    # Borramos la tabla si ya existe para empezar de cero.
     cursor.execute("DROP TABLE IF EXISTS ingest_history;")
-    
-    # Creamos la tabla de nuevo.
     cursor.execute("""
     CREATE TABLE ingest_history (
         batch_id TEXT PRIMARY KEY,
@@ -67,6 +72,7 @@ def ingest_data(conn: sqlite3.Connection):
     cursor = conn.cursor()
     
     drop_zone = DATA_DIR / "drops"
+    print(f"Buscando ficheros .ndjson en: {drop_zone.resolve()}")
     source_files = list(drop_zone.glob("**/*.ndjson"))
 
     if not source_files:
@@ -87,7 +93,6 @@ def ingest_data(conn: sqlite3.Connection):
         
         valid_records = []
         quarantined_records = []
-        # CORRECCIÓN 1: Usar datetime.now(timezone.utc) para evitar la advertencia.
         ingest_ts = datetime.now(tz=timezone.utc).isoformat()
         
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -95,7 +100,6 @@ def ingest_data(conn: sqlite3.Connection):
                 try:
                     record = json.loads(line)
                     
-                    # CORRECCIÓN 2: Lógica de validación del timestamp mejorada.
                     dt_obj = pd.to_datetime(record['ts'])
                     if dt_obj.tzinfo is None:
                         raise ValueError("Timestamp no contiene información de zona horaria")
@@ -138,9 +142,9 @@ def ingest_data(conn: sqlite3.Connection):
     return pd.DataFrame(all_valid_records)
 
 # ==============================================================================
-# FASE 2: LIMPIEZA Y MODELADO (EJERCICIO 2)
+# ... (El resto de las funciones clean_and_model, generate_report y main no necesitan cambios)
+# PEGA AQUÍ LAS FUNCIONES clean_and_model(), generate_report() y main() DE LA VERSIÓN ANTERIOR.
 # ==============================================================================
-
 def clean_and_model(df: pd.DataFrame):
     """
     Toma los datos ingeridos, los limpia (Capa Plata) y luego los modela para
@@ -238,10 +242,6 @@ def clean_and_model(df: pd.DataFrame):
     
     print("--- Fase 2 Completada ---\n")
 
-# ==============================================================================
-# FASE 3: REPORTE EN MARKDOWN (EJERCICIO 3)
-# ==============================================================================
-
 def generate_report():
     """
     Lee los datos agregados de la Capa Oro y genera un informe en formato Markdown.
@@ -264,7 +264,6 @@ def generate_report():
     
     periodo_inicio = sessions_per_day['fecha'].min()
     periodo_fin = sessions_per_day['fecha'].max()
-    # CORRECCIÓN: Usar datetime.now(timezone.utc) también aquí.
     fecha_reporte = datetime.now(tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
 
     report_content = f"""
@@ -310,10 +309,6 @@ def generate_report():
     
     print(f" -> Reporte generado correctamente en: {report_path}")
     print("--- Fase 3 Completada ---")
-
-# ==============================================================================
-# FUNCIÓN PRINCIPAL (ORQUESTADOR)
-# ==============================================================================
 
 def main():
     """Función principal que orquesta la ejecución de todo el pipeline."""
