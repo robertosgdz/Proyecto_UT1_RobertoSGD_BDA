@@ -1,23 +1,20 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
-
-/**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
- */
 const config: QuartzConfig = {
   configuration: {
+    // 1. Título principal del sitio web
     pageTitle: "Proyecto UT1 - Analítica Web",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
+    // 2. Desactivamos las analíticas para evitar errores
     analytics: null,
-    locale: "en-US",
-    baseUrl: "https://RobertoSgD.github.io/Proyecto_UT1_RA1_BA",
+    locale: "es-ES",
+    // 3. URL base para el despliegue en GitHub Pages (¡verifica que sea correcta!)
+    baseUrl: "RobertoSgD.github.io/Proyecto_UT1_RobertoSGD_BDA",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -87,8 +84,6 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
     ],
   },
 }
