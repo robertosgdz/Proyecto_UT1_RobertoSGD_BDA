@@ -1,16 +1,4 @@
-import pandas as pd
-import numpy as np
-import json
-from pathlib import Path
 
-def find_project_root(marker=".gitignore"):
-    """Sube niveles hasta encontrar el fichero marcador de la raíz del proyecto."""
-    current_path = Path(__file__).resolve()
-    while current_path != current_path.parent:
-        if (current_path / marker).exists():
-            return current_path
-        current_path = current_path.parent
-    raise FileNotFoundError(f"No se pudo encontrar la raíz del proyecto (marcador: {marker})")
 
 import pandas as pd
 import numpy as np
