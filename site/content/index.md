@@ -6,5 +6,5 @@ title: "Proyecto UT1 · RA1 · Big Data Aplicado"
 Publicación web de los resultados de la práctica.
 
 - 📖 [Docs-proyecto](./docs-proyecto/)
-- 👉 [Reporte UT1](./reportes/reporte-UT1.md/)
+- 👉 [Reporte UT1](./reporte-UT1.md/)
 - 🧩 [Metodología](./metodologia.md/)
