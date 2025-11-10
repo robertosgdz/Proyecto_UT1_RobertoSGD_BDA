@@ -142,8 +142,7 @@ def ingest_data(conn: sqlite3.Connection):
     return pd.DataFrame(all_valid_records)
 
 # ==============================================================================
-# ... (El resto de las funciones clean_and_model, generate_report y main no necesitan cambios)
-# PEGA AQUÍ LAS FUNCIONES clean_and_model(), generate_report() y main() DE LA VERSIÓN ANTERIOR.
+# FASE 2: LIMPIEZA Y MODELADO (EJERCICIO 2)
 # ==============================================================================
 def clean_and_model(df: pd.DataFrame):
     """
